@@ -1,4 +1,4 @@
-package timaxa007.rotating_block.r4side_a;
+package timaxa007.rotating_block.r4side;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -13,15 +13,15 @@ import net.minecraft.block.Block;
 public class ModBlockRotatingObj {
 
 	public static final String
-	MODID = "block_rotating_4_side_a_obj",
+	MODID = "block_rotating_4_side_obj",
 	DOMIN = "block_rotating_obj",
 	MODNAME = "Rotating the block",
 	VERSION = "0.3";
 
 	@Instance(MODID) public static ModBlockRotatingObj instance;
 	@SidedProxy(modId = MODID,
-			clientSide = "timaxa007.rotating_block.r4side_a.ProxyClient",
-			serverSide = "timaxa007.rotating_block.r4side_a.ProxyCommon")
+			clientSide = "timaxa007.rotating_block.r4side.ProxyClient",
+			serverSide = "timaxa007.rotating_block.r4side.ProxyCommon")
 	public static ProxyCommon proxy;
 
 	public static Block block_rotating_obj;
@@ -30,9 +30,9 @@ public class ModBlockRotatingObj {
 	public void preInit(FMLPreInitializationEvent event) {
 
 		block_rotating_obj = new BlockRotatingObj();
-		GameRegistry.registerBlock(block_rotating_obj, ItemBlockRotatingObj.class, "block_rotating_4_side_a_obj");
+		GameRegistry.registerBlock(block_rotating_obj, ItemBlockRotatingObj.class, "block_rotating_4_side_obj");
 
-		GameRegistry.registerTileEntity(TileEntityRotatingObj.class, "TileEntityRotating4SideAobj");
+		GameRegistry.registerTileEntity(TileEntityRotatingObj.class, "TileEntityRotating4SideObj");
 
 		proxy.preInit();
 	}

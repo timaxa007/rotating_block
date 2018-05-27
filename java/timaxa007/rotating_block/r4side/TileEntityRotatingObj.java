@@ -1,4 +1,4 @@
-package timaxa007.rotating_block.r4side_a;
+package timaxa007.rotating_block.r4side;
 
 import net.minecraft.tileentity.TileEntity;
 

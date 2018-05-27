@@ -1,4 +1,4 @@
-package timaxa007.rotating_block.r4side_a;
+package timaxa007.rotating_block.universal;
 
 import org.lwjgl.opengl.GL11;
 
@@ -24,39 +24,35 @@ public class RenderTileEntityRotatingObj extends TileEntitySpecialRenderer {
 		GL11.glTranslated(x, y, z);
 		GL11.glTranslatef(0.5F, 0F, 0.5F);
 		if (tile != null) {
-			if (tile.getBlockMetadata() < 8) {
-				switch(tile.getBlockMetadata() % 4) {
-				case 0:GL11.glRotatef(180F, 0F, 1F, 0F);break;
-				case 1:GL11.glRotatef(90F, 0F, 1F, 0F);break;
-				case 2:GL11.glRotatef(0F, 0F, 1F, 0F);break;
-				case 3:GL11.glRotatef(180F + 90F, 0F, 1F, 0F);break;
-				}
-				if (tile.getBlockMetadata() > 3) {
-					GL11.glTranslatef(0F, 1F, 0F);
-					GL11.glRotatef(180F, 1F, 0F, 0F);
-					GL11.glRotatef(180F, 0F, 1F, 0F);
-				}
-			} else {
-				switch(tile.getBlockMetadata()) {
-				case 8:
-					GL11.glTranslatef(0F, 0F, 0.5F);
-					GL11.glRotatef(180F, 0F, 1F, 0F);
-					break;
-				case 9:
-					GL11.glTranslatef(0F, 0F, -0.5F);
-					GL11.glRotatef(0F, 0F, 1F, 0F);
-					break;
-				case 11:
-					GL11.glTranslatef(-0.5F, 0F, 0F);
-					GL11.glRotatef(90F, 0F, 1F, 0F);
-					break;
-				case 10:
-					GL11.glTranslatef(0.5F, 0F, 0F);
-					GL11.glRotatef(180F + 90F, 0F, 1F, 0F);
-					break;
-				}
-				GL11.glTranslatef(0F, 0.5F, 0F);
+			switch(tile.getSide()) {
+			case 0:
+				GL11.glTranslatef(0F, 1F, 0F);
+				GL11.glRotatef(180F, 1F, 0F, 0F);
+				GL11.glRotatef(tile.getRotate(), 0F, 1F, 0F);
+				break;
+			case 1:
+				GL11.glRotatef(180F - tile.getRotate(), 0F, 1F, 0F);
+				break;
+			case 2:
+				GL11.glTranslatef(0F, 0.5F, 0.5F);
+				GL11.glRotatef(-90F, 1F, 0F, 0F);
+				GL11.glRotatef(90F - tile.getRotate(), 0F, 1F, 0F);
+				break;
+			case 3:
+				GL11.glTranslatef(0F, 0.5F, -0.5F);
 				GL11.glRotatef(90F, 1F, 0F, 0F);
+				GL11.glRotatef(90F + tile.getRotate(), 0F, 1F, 0F);
+				break;
+			case 4:
+				GL11.glTranslatef(0.5F, 0.5F, 0F);
+				GL11.glRotatef(90F, 0F, 0F, 1F);
+				GL11.glRotatef(tile.getRotate(), 0F, 1F, 0F);
+				break;
+			case 5:
+				GL11.glTranslatef(-0.5F, 0.5F, 0F);
+				GL11.glRotatef(-90F, 0F, 0F, 1F);
+				GL11.glRotatef((180F - tile.getRotate()) + 180F, 0F, 1F, 0F);
+				break;
 			}
 		}
 		bindTexture(texture);
