@@ -32,22 +32,22 @@ public class ItemBlockRotatingObj extends ItemBlock {
 			TileEntity te = world.getTileEntity(x, y, z);
 			if (te instanceof TileEntityRotatingObj) {
 				TileEntityRotatingObj tile = (TileEntityRotatingObj)te;
-				float deg = 0;
+				float rot = 0;
 				switch(side){
 				case 0:
 				case 1:
-					deg = player.rotationYaw;
+					rot = player.rotationYaw;
 					break;
 				case 2:
 				case 3:
-					deg = (float)(Math.atan2(0.5F - hitY, 0.5F - hitX) * (180D / Math.PI));
+					rot = (float)(Math.atan2(0.5F - hitY, 0.5F - hitX) * (180D / Math.PI));
 					break;
 				case 4:
 				case 5:
-					deg = (float)(Math.atan2(0.5F - hitY, 0.5F - hitZ) * (180D / Math.PI));
+					rot = (float)(Math.atan2(0.5F - hitY, 0.5F - hitZ) * (180D / Math.PI));
 					break;
 				}
-				int l = MathHelper.floor_float((deg * tile.getDirections() / 360.0F) + 0.5F) & (tile.getDirections() - 1);
+				int l = MathHelper.floor_float((rot * tile.getDirections() / 360.0F) + 0.5F) & (tile.getDirections() - 1);
 				tile.rotate_side = (byte)(l << 3 | side);
 			}
 			return true;
